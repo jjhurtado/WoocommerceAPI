@@ -23,11 +23,11 @@ public interface WooSalesApi {
     public boolean completeOrden(Orden o);
 
     public boolean completeOrden(List<Orden> ordenes);
-    
+
     public boolean completeOrden(Integer[] ordenesNo);
 
     public void printOrden(Orden o);
 
-    public List<Client> getClients();
+    //public List<Client> getClients();
 
 }

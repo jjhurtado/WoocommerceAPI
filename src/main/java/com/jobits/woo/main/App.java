@@ -81,19 +81,19 @@ public class App extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (Client c : api.getClients()) {
-            if (out != null) {
-                out.printf("%s;%s;%s;%s;%s;%s;%s;%s\n",
-                        c.getId(),
-                        !c.getFirst_name().isBlank() ? c.getFirst_name() : c.getBilling().getFirst_name(),
-                        !c.getLast_name().isBlank() ? c.getLast_name() : c.getBilling().getLast_name(),
-                        c.getEmail(),
-                        c.getBilling().getAddress_1(),
-                        c.getBilling().getCity(),
-                        c.getBilling().getCountry(),
-                        c.getBilling().getPhone());
-            }
-        }
+//        for (Client c : api.getClients()) {
+//            if (out != null) {
+//                out.printf("%s;%s;%s;%s;%s;%s;%s;%s\n",
+//                        c.getId(),
+//                        !c.getFirst_name().isBlank() ? c.getFirst_name() : c.getBilling().getFirst_name(),
+//                        !c.getLast_name().isBlank() ? c.getLast_name() : c.getBilling().getLast_name(),
+//                        c.getEmail(),
+//                        c.getBilling().getAddress_1(),
+//                        c.getBilling().getCity(),
+//                        c.getBilling().getCountry(),
+//                        c.getBilling().getPhone());
+//            }
+//        }
     }
 
     /**

@@ -27,7 +27,8 @@ import java.util.Map;
 public class WooSalesApiImpl implements WooSalesApi {
 
     private OAuthConfig config
-            = new OAuthConfig(ResourceHandler.getString("site_url"),
+            = new OAuthConfig(
+                    ResourceHandler.getString("site_url"),
                     ResourceHandler.getString("consumer_key"),
                     ResourceHandler.getString("consumer_secret"));
 
@@ -72,18 +73,18 @@ public class WooSalesApiImpl implements WooSalesApi {
     }
     
     
-
-    @Override
-    public List<Client> getClients() {
-        var map = getOptionsMap();
-        List<Map> clients = wooCommerce.getAll(EndpointBaseType.CUSTOMERS.getValue(), map);
-        for (int i = 2; i < 30; i++) {
-            map.put("page", "" + i);
-            clients.addAll(wooCommerce.getAll(EndpointBaseType.CUSTOMERS.getValue(), map));
-        }
-
-        return om.convertValue(clients, om.getTypeFactory().constructCollectionType(List.class, Client.class));
-    }
+//
+//    @Override
+//    public List<Client> getClients() {
+//        var map = getOptionsMap();
+//        List<Map> clients = wooCommerce.getAll(EndpointBaseType.CUSTOMERS.getValue(), map);
+//        for (int i = 2; i < 30; i++) {
+//            map.put("page", "" + i);
+//            clients.addAll(wooCommerce.getAll(EndpointBaseType.CUSTOMERS.getValue(), map));
+//        }
+//
+//        return om.convertValue(clients, om.getTypeFactory().constructCollectionType(List.class, Client.class));
+//    }
 
     @Override
     public List<Orden> getOrdenesActivas() {
