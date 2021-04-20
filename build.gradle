@@ -1,15 +1,43 @@
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'jacoco'
 apply plugin: 'maven-publish'
 
-    group = 'com.jobits'
+group = 'com.jobits'
 
 repositories {
+    mavenCentral()
     jcenter()
+    maven {url = jobitsRepoReadUrl}
+}
+
+application{
+    mainClassName = 'com.jobits.woo.main.App'
+
 }
 
 dependencies {
     testImplementation     'junit:junit:4.13'
+    // https://mvnrepository.com/artifact/com.icoderman/wc-api-java
+    implementation group: 'com.icoderman', name: 'wc-api-java', version: '1.4'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core 
+    //Jackson
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.2'
+    
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+
+     
+    // https://mvnrepository.com/artifact/com.google.inject/guice
+    compile group: 'com.google.inject', name: 'guice', version: '4.2.3'
+   
+    
+    implementation 'com.root101:clean-core:2.1.0.RELEASE.20210118'
+   
+
 }
 
 

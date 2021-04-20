@@ -12,6 +12,9 @@ import com.root101.clean.core.app.modules.DefaultAbstractModule;
 import com.root101.clean.core.domain.services.ResourceHandler;
 import com.root101.clean.core.exceptions.AlreadyInitModule;
 import com.root101.clean.core.exceptions.NotInitModule;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -42,16 +45,24 @@ public class WooCoreModule extends DefaultAbstractModule {
      * @return
      * @Deprecated
      */
-    public static WooCoreModule init(AbstractModule repoModule) {
+    public static WooCoreModule init(AbstractModule... repoModule) {
         if (INSTANCE != null) {
             throw new AlreadyInitModule(ResourceHandler.getString("com.jobits.pos.reserva.name"));
         }
         INSTANCE = new WooCoreModule();
-        INSTANCE.registerModule(repoModule);
+        for (AbstractModule m : repoModule) {
+            INSTANCE.registerModule(m);
+
+        }
         return getInstance();
     }
 
     private WooCoreModule() {
+        try {
+            ResourceHandler.registerExternal("woo-module-props");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(WooCoreModule.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
