@@ -9,6 +9,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.jobits.woo.sales.WooSalesApi;
 import com.jobits.woo.sales.impl.WooSalesApiImpl;
+import com.jobits.woo.servicios.impresion.ImpresoraService;
+import com.jobits.woo.servicios.impresion.ImpresoraUseCase;
 
 
 /**
@@ -23,6 +25,7 @@ class WooInjectionConfig extends AbstractModule {
     @Override
     protected void configure() {
         bind(WooSalesApi.class).to(WooSalesApiImpl.class).in(Scopes.SINGLETON);
+        bind(ImpresoraService.class).to(ImpresoraUseCase.class).in(Scopes.SINGLETON);
 
     }
 

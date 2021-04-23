@@ -17,7 +17,10 @@ import com.icoderman.woocommerce.oauth.OAuthConfig;
 import com.jobits.woo.domain.Client;
 import com.jobits.woo.domain.Orden;
 import com.jobits.woo.domain.OrderStatus;
+import com.jobits.woo.module.WooCoreModule;
 import com.jobits.woo.sales.WooSalesApi;
+import com.jobits.woo.servicios.impresion.Impresion;
+import com.jobits.woo.servicios.impresion.ImpresoraService;
 import com.root101.clean.core.domain.services.ResourceHandler;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,14 +58,14 @@ public class WooSalesApiImpl implements WooSalesApi {
             batchOrder.put("id", o.getId());
             orders.add(batchOrder);
         }
-        wooCommerce.batch(EndpointBaseType.ORDERS.getValue(),params );
+        wooCommerce.batch(EndpointBaseType.ORDERS.getValue(), params);
 
         return true;
     }
 
     @Override
     public boolean completeOrden(Integer[] ordenesNo) {
-       List<Orden> ret = new ArrayList<>();
+        List<Orden> ret = new ArrayList<>();
         for (int o : ordenesNo) {
             Orden add = new Orden();
             add.setId(o);
@@ -71,8 +74,7 @@ public class WooSalesApiImpl implements WooSalesApi {
         completeOrden(ret);
         return true;
     }
-    
-    
+
 //
 //    @Override
 //    public List<Client> getClients() {
@@ -85,7 +87,6 @@ public class WooSalesApiImpl implements WooSalesApi {
 //
 //        return om.convertValue(clients, om.getTypeFactory().constructCollectionType(List.class, Client.class));
 //    }
-
     @Override
     public List<Orden> getOrdenesActivas() {
         var map = getOptionsMap();
@@ -97,7 +98,8 @@ public class WooSalesApiImpl implements WooSalesApi {
 
     @Override
     public void printOrden(Orden o) {
-        throw new UnsupportedOperationException(); //To change body of generated methods, choose Tools | Templates.
+        ImpresoraService service = WooCoreModule.getInstance().getImplementation(ImpresoraService.class);
+        service.
     }
 
     private Map<String, String> getOptionsMap() {

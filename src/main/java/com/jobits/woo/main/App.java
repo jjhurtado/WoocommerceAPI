@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.text.DefaultEditorKit;
 
@@ -128,7 +129,7 @@ public class App extends javax.swing.JFrame {
         jButtonCargarDatos.setText("Cargar Datos");
         jPanel2.add(jButtonCargarDatos, java.awt.BorderLayout.PAGE_START);
 
-        jButtonImprimirTodo.setText("Imprimir todo");
+        jButtonImprimirTodo.setText("Imprimir");
         jPanel1.add(jButtonImprimirTodo);
 
         jButtonMarcarCompletado.setText("Marcar Completado");
@@ -202,6 +203,9 @@ public class App extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 WooCoreModule.init();
+                Thread.setDefaultUncaughtExceptionHandler((Thread t, Throwable e) -> {
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                });
                 new App().setVisible(true);
             }
         });
