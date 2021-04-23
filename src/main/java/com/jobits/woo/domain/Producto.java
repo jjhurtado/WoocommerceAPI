@@ -12,7 +12,7 @@ package com.jobits.woo.domain;
  * @author Jorge
  * 
  */
- class Producto {
+ public class Producto {
 
     private int id;
     private int product_id;

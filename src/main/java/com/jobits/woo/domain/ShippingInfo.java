@@ -12,7 +12,7 @@ package com.jobits.woo.domain;
  * @author Jorge
  *
  */
-class ShippingInfo {
+public class ShippingInfo {
 
     private String first_name;
     private String last_name;
